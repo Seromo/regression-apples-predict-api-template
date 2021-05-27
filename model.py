@@ -26,6 +26,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import json
+from sklearn.preprocessing import StandardScaler
 
 def _preprocess_data(data):
     """Private helper function to preprocess data for model prediction.
@@ -62,8 +63,12 @@ def _preprocess_data(data):
     
 
     feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
-    predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
-                                
+
+
+    predict_vector = feature_vector_df[['Total_Qty_Sold','Weight_Kg','Stock_On_Hand','Low_Price', 'High_Price','Sales_Total','Total_Kg_Sold']]
+
+    scaler = StandardScaler()
+    predict_vector = scaler.fit_transform(predict_vector)                
     # ------------------------------------------------------------------------
 
     return predict_vector

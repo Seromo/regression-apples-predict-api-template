@@ -27,6 +27,7 @@ import numpy as np
 # from the Kaggle challenge.
 test = pd.read_csv('data/test_data.csv')
 
+
 # Convert our DataFrame to a JSON string.
 # This step is necessary in order to transmit our data via HTTP/S
 feature_vector_json = test.iloc[1].to_json()
